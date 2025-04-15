@@ -2,3 +2,4 @@
 
 1. walid nadirul ahnaf (g6401231109)
 2. brilyan pancar komara (g6401231024)
+3. Afif Fakhri Muhammad (G6401231007)
