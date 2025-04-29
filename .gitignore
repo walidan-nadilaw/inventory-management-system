@@ -1,0 +1,22 @@
+# Dependency directories
+node_modules/
+
+# Environment variables
+.env
+.env.development.local
+.env.test.local
+.env.production.local
+.env.local
+
+# Prisma-related files
+prisma/app
+
+# Build output
+dist/
+build/
+
+# Public uploads
+public/uploads
+
+#vscode
+.vscode
