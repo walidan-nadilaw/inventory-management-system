@@ -73,7 +73,7 @@
                 </div>
                 <ul class="nav flex-column">
                     <li class="nav-item">
-                        <a class="nav-link {{ request()->is('/') ? 'active' : '' }}" href="/">
+                        <a class="nav-link active" href="/">
                             <i class="fas fa-home"></i> Home
                         </a>
                     </li>
@@ -83,7 +83,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {{ request()->is('history') ? 'active' : '' }}" href="/history">
+                        <a class="nav-link" href="/history">
                             <i class="fas fa-history"></i> History
                         </a>
                     </li>
