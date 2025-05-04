@@ -1,5 +1,3 @@
-
-
 <?php $__env->startSection('content'); ?>
     <h1 class="text-2xl font-bold mb-8 pb-4 border-b border-gray-200">Riwayat Transaksi</h1>
     
