@@ -11,7 +11,7 @@
     <div class="bg-white rounded-lg shadow-sm p-6">
         <div class="flex justify-between items-center mb-6">
             <h3 class="text-lg font-semibold">Daftar Inventory</h3>
-            <a href="/inventory/create" class="bg-primary hover:bg-primary-hover text-white px-4 py-2 rounded-md flex items-center">
+            <a href="{{ route('inventory.create') }}" class="bg-primary hover:bg-primary-hover text-white px-4 py-2 rounded-md flex items-center">
                 <i class="fas fa-plus mr-2"></i> Tambah Item Baru
             </a>
         </div>
@@ -40,7 +40,7 @@
                         <td class="px-4 py-3">{{ $item['last_updated'] }}</td>
                         <td class="px-4 py-3">
                             <div class="flex space-x-2">
-                                <a href="/inventory/{{ $item['id'] }}/edit" class="bg-warning hover:bg-amber-500 text-white px-3 py-1 rounded flex items-center">
+                                <a href="{{ route('inventory.edit', $item['id']) }}" class="bg-warning hover:bg-amber-500 text-white px-3 py-1 rounded flex items-center">
                                     <i class="fas fa-edit mr-1"></i> Edit
                                 </a>
                                 <button type="button" 
