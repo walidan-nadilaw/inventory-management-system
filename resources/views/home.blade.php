@@ -1,8 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1 class="text-2xl font-bold mb-8 pb-4 border-b border-gray-200">Dashboard</h1>
-    
     <div class="bg-white rounded-lg shadow-sm p-6 mb-8">
         <h2 class="text-xl font-semibold mb-3">Selamat Datang di Inventory Management System</h2>
         <p class="text-gray-600">Kelola inventaris Anda dengan mudah dan efisien. Gunakan sistem ini untuk melacak stok, memantau pergerakan barang, dan mengoptimalkan proses inventory Anda.</p>
