@@ -20,3 +20,6 @@ public/uploads
 
 #vscode
 .vscode
+
+databse.sqlite
+laravel.log
