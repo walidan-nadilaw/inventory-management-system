@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\InventoryController;
+use App\Http\Controllers\ItemController;
+use App\Http\Controllers\HomeController;
 
 // Define the inventory data at the top level so it's accessible to all routes
 $inventory = [
@@ -47,9 +48,9 @@ $inventory = [
     ],
 ];
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//Route::get('/', function () {
+//    return view('welcome');
+//});
 
 Route::get('/history', function () {
     // Sample history data for demonstration
@@ -99,9 +100,6 @@ Route::get('/history', function () {
     return view('history', ['history' => $history]);
 })->name('inventory.history');
 
-Route::get('/home', function () use ($inventory) {
-    return view('home', ['inventory' => $inventory]);
-});
 
 Route::get('/inventory/create', function () {
     return view('create'); // Or 'inventory.create' if using folders
@@ -130,3 +128,10 @@ Route::put('/inventory/{id}', function ($id) {
 Route::get('/inventory', function () use ($inventory) {
     return view('home', ['inventory' => $inventory]);
 })->name('inventory.index');
+
+Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/home', [HomeController::class, 'index']);
+
+Route::resource('items', ItemController::class)->only([
+    'index', 'store', 'update', 'destroy'
+]);

@@ -37,8 +37,13 @@
             </div>
             <ul class="space-y-1 px-3">
                 <li>
-                    <a href="/home" class="flex items-center px-4 py-3 rounded-md hover:bg-gray-600 transition-colors text-gray-300 hover:text-white <?php echo e(request()->is('home') ? 'bg-primary text-white' : ''); ?>">
+                    <a href="<?php echo e(route('home')); ?>" class="flex items-center px-4 py-3 rounded-md hover:bg-gray-600 transition-colors text-gray-300 hover:text-white <?php echo e(request()->is('home') || request()->is('/') ? 'bg-primary text-white' : ''); ?>">
                         <i class="fas fa-home mr-3"></i> Home
+                    </a>
+                </li>
+                <li>
+                    <a href="<?php echo e(route('items.index')); ?>" class="flex items-center px-4 py-3 rounded-md hover:bg-gray-600 transition-colors text-gray-300 hover:text-white <?php echo e(request()->is('items*') ? 'bg-primary text-white' : ''); ?>">
+                        <i class="fas fa-box mr-3"></i> Items
                     </a>
                 </li>
                 <li>
@@ -64,7 +69,6 @@
             <?php echo $__env->yieldContent('content'); ?>
         </div>
     </div>
-
     <!-- Alpine.js for interactivity (as a lightweight alternative to Bootstrap JS) -->
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </body>
