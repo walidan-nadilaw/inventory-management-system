@@ -1,4 +1,4 @@
-<?php
+<?php 
 
 namespace App\Http\Controllers;
 
@@ -17,21 +17,27 @@ class HomeController extends Controller
     {
         $validated = $request->validate([
             'nama' => 'required',
-            'harga' => 'required|numeric',
-            'jumlah' => 'required|integer',
+            'harga' => 'required|numeric|min:0', 
+            'jumlah' => 'required|integer|min:0', 
         ]);
-        
+
         Item::create($validated);
         return redirect()->back()->with('success', 'Item berhasil ditambahkan');
     }
-    
+
     public function update(Request $request, $id)
     {
+        $validated = $request->validate([
+            'nama' => 'required',
+            'harga' => 'required|numeric|min:0',
+            'jumlah' => 'required|integer|min:0', 
+        ]);
+        
         $item = Item::findOrFail($id);
-        $item->update($request->only(['nama', 'harga', 'jumlah']));
+        $item->update($validated);
         return redirect()->back()->with('success', 'Item berhasil diupdate');
     }
-    
+
     public function destroy($id)
     {
         $item = Item::findOrFail($id);

@@ -7,6 +7,16 @@
 </div>
 @endif
 
+@if ($errors->any())
+<div class="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 mb-6" role="alert">
+    <ul>
+        @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+        @endforeach
+    </ul>
+</div>
+@endif
+
 <div class="bg-white rounded-lg shadow-sm p-6 mb-8">
     <h2 class="text-xl font-semibold mb-3">Selamat Datang di Inventory Management System</h2>
     <p class="text-gray-600">Kelola inventaris Anda dengan mudah dan efisien. Gunakan sistem ini untuk melacak stok, memantau pergerakan barang, dan mengoptimalkan proses inventory Anda.</p>
@@ -114,11 +124,11 @@
                                 </div>
                                 <div class="mb-3">
                                     <label for="harga" class="block text-sm font-medium text-gray-700 mb-1">Harga</label>
-                                    <input type="number" name="harga" id="harga" required class="w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50">
+                                    <input type="number" name="harga" id="harga" min="0" step="any" required class="w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50">
                                 </div>
                                 <div class="mb-3">
                                     <label for="jumlah" class="block text-sm font-medium text-gray-700 mb-1">Jumlah</label>
-                                    <input type="number" name="jumlah" id="jumlah" required class="w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50">
+                                    <input type="number" name="jumlah" id="jumlah" min="0" step="1" required class="w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50">
                                 </div>
                             </form>
                         </div>
@@ -178,11 +188,11 @@
                                 </div>
                                 <div class="mb-3">
                                     <label for="edit_harga" class="block text-sm font-medium text-gray-700 mb-1">Harga</label>
-                                    <input type="number" name="harga" id="edit_harga" x-model="itemHarga" required class="w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50">
+                                    <input type="number" name="harga" id="edit_harga" min="0" step="any" x-model="itemHarga" required class="w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50">
                                 </div>
                                 <div class="mb-3">
                                     <label for="edit_jumlah" class="block text-sm font-medium text-gray-700 mb-1">Jumlah</label>
-                                    <input type="number" name="jumlah" id="edit_jumlah" x-model="itemJumlah" required class="w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50">
+                                    <input type="number" name="jumlah" id="edit_jumlah" min="0" step="1" x-model="itemJumlah" required class="w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50">
                                 </div>
                             </form>
                         </div>
@@ -253,4 +263,60 @@
         </div>
     </div>
 </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Custom validation messages for Add Modal
+        const hargaInput = document.getElementById('harga');
+        const jumlahInput = document.getElementById('jumlah');
+        
+        if (hargaInput) {
+            hargaInput.addEventListener('input', function() {
+                if (this.value < 0) {
+                    this.setCustomValidity('Value must be greater than or equal to 0');
+                } else {
+                    this.setCustomValidity('');
+                }
+            });
+        }
+        
+        if (jumlahInput) {
+            jumlahInput.addEventListener('input', function() {
+                if (this.value < 0) {
+                    this.setCustomValidity('Value must be greater than or equal to 0');
+                } else {
+                    this.setCustomValidity('');
+                }
+            });
+        }
+        
+        // For Edit Modal - we need to use Alpine.js events
+        document.addEventListener('open-edit-modal', function() {
+            setTimeout(() => {
+                const editHargaInput = document.getElementById('edit_harga');
+                const editJumlahInput = document.getElementById('edit_jumlah');
+                
+                if (editHargaInput) {
+                    editHargaInput.addEventListener('input', function() {
+                        if (this.value < 0) {
+                            this.setCustomValidity('Value must be greater than or equal to 0');
+                        } else {
+                            this.setCustomValidity('');
+                        }
+                    });
+                }
+                
+                if (editJumlahInput) {
+                    editJumlahInput.addEventListener('input', function() {
+                        if (this.value < 0) {
+                            this.setCustomValidity('Value must be greater than or equal to 0');
+                        } else {
+                            this.setCustomValidity('');
+                        }
+                    });
+                }
+            }, 100);
+        });
+    });
+</script>
 @endsection
