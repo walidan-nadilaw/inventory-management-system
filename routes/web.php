@@ -4,53 +4,6 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\HomeController;
 
-// Define the inventory data at the top level so it's accessible to all routes
-$inventory = [
-    [
-        'id' => 1,
-        'name' => 'Product A',
-        'category' => 'Electronics',
-        'quantity' => 50,
-        'price' => 299.99,
-        'last_updated' => '2025-04-25'
-    ],
-    [
-        'id' => 2,
-        'name' => 'Product B',
-        'category' => 'Office Supplies',
-        'quantity' => 120,
-        'price' => 49.99,
-        'last_updated' => '2025-04-28'
-    ],
-    [
-        'id' => 3,
-        'name' => 'Product C',
-        'category' => 'Furniture',
-        'quantity' => 15,
-        'price' => 599.99,
-        'last_updated' => '2025-04-30'
-    ],
-    [
-        'id' => 4,
-        'name' => 'Product D',
-        'category' => 'Electronics',
-        'quantity' => 35,
-        'price' => 149.99,
-        'last_updated' => '2025-04-29'
-    ],
-    [
-        'id' => 5,
-        'name' => 'Product E',
-        'category' => 'Office Supplies',
-        'quantity' => 80,
-        'price' => 29.99,
-        'last_updated' => '2025-04-26'
-    ],
-];
-
-//Route::get('/', function () {
-//    return view('welcome');
-//});
 
 Route::get('/history', function () {
     // Sample history data for demonstration
