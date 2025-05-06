@@ -42,11 +42,6 @@
                     </a>
                 </li>
                 <li>
-                    <a href="<?php echo e(route('items.index')); ?>" class="flex items-center px-4 py-3 rounded-md hover:bg-gray-600 transition-colors text-gray-300 hover:text-white <?php echo e(request()->is('items*') ? 'bg-primary text-white' : ''); ?>">
-                        <i class="fas fa-box mr-3"></i> Items
-                    </a>
-                </li>
-                <li>
                     <a href="/history" class="flex items-center px-4 py-3 rounded-md hover:bg-gray-600 transition-colors text-gray-300 hover:text-white <?php echo e(request()->is('history') ? 'bg-primary text-white' : ''); ?>">
                         <i class="fas fa-history mr-3"></i> History
                     </a>

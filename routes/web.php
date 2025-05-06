@@ -54,37 +54,38 @@ Route::get('/history', function () {
 })->name('inventory.history');
 
 
-Route::get('/inventory/create', function () {
-    return view('create'); // Or 'inventory.create' if using folders
-})->name('inventory.create');
+// Route::get('/inventory/create', function () {
+//     return view('create'); // Or 'inventory.create' if using folders
+// })->name('inventory.create');
 
-// Route for edit form
-Route::get('/inventory/{id}/edit', function ($id) use ($inventory) {
-    // Find item by ID
-    $item = collect($inventory)->firstWhere('id', $id);
-    if (!$item) {
-        abort(404);
-    }
-    return view('edit', ['item' => $item]); // Or 'inventory.edit' if using folders
-})->name('inventory.edit');
+// // Route for edit form
+// Route::get('/inventory/{id}/edit', function ($id) use ($inventory) {
+//     // Find item by ID
+//     $item = collect($inventory)->firstWhere('id', $id);
+//     if (!$item) {
+//         abort(404);
+//     }
+//     return view('edit', ['item' => $item]); // Or 'inventory.edit' if using folders
+// })->name('inventory.edit');
 
 // Routes for form submissions (POST, PUT, DELETE)
 // These are dummy routes that will redirect back to dashboard
-Route::post('/inventory', function () {
-    return redirect('home')->with('success', 'Item added successfully!');
-})->name('inventory.store');
+// Route::post('/inventory', function () {
+//     return redirect('home')->with('success', 'Item added successfully!');
+// })->name('inventory.store');
 
-Route::put('/inventory/{id}', function ($id) {
-    return redirect('home')->with('success', 'Item updated successfully!');
-})->name('inventory.update');
+// Route::put('/inventory/{id}', function ($id) {
+//     return redirect('home')->with('success', 'Item updated successfully!');
+// })->name('inventory.update');
 
-Route::get('/inventory', function () use ($inventory) {
-    return view('home', ['inventory' => $inventory]);
-})->name('inventory.index');
+// Route::get('/inventory', function () use ($inventory) {
+//     return view('home', ['inventory' => $inventory]);
+// })->name('inventory.index');
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
-Route::get('/home', [HomeController::class, 'index']);
+Route::post('/items', [HomeController::class, 'store'])->name('home.store');
+Route::put('/items/{id}', [HomeController::class, 'update'])->name('home.update');
+Route::delete('/items/{id}', [HomeController::class, 'destroy'])->name('home.destroy');
 
-Route::resource('items', ItemController::class)->only([
-    'index', 'store', 'update', 'destroy'
-]);
+// Item routes for any additional functionality
+Route::resource('items', ItemController::class)->except(['store', 'update', 'destroy']);

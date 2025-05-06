@@ -2,43 +2,40 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Item;
+use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        // Jika Anda memiliki middleware auth, aktifkan baris di bawah ini
-        // $this->middleware('auth');
-    }
-
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
     public function index()
     {
-        // Mengambil semua data item
         $items = Item::all();
+        return view('home', compact('items'));
+    }
+
+    public function store(Request $request)
+    {
+        $validated = $request->validate([
+            'nama' => 'required',
+            'harga' => 'required|numeric',
+            'jumlah' => 'required|integer',
+        ]);
         
-        // Menghitung total item (jumlah record)
-        $totalItems = $items->count();
-        
-        // Menghitung total stok (jumlah dari semua barang)
-        $totalStok = $items->sum('jumlah');
-        
-        // Menghitung total nilai inventory (harga x jumlah)
-        $totalNilai = $items->sum(function($item) {
-            return $item->harga * $item->jumlah;
-        });
-        
-        return view('home', compact('items', 'totalItems', 'totalStok', 'totalNilai'));
+        Item::create($validated);
+        return redirect()->back()->with('success', 'Item berhasil ditambahkan');
+    }
+    
+    public function update(Request $request, $id)
+    {
+        $item = Item::findOrFail($id);
+        $item->update($request->only(['nama', 'harga', 'jumlah']));
+        return redirect()->back()->with('success', 'Item berhasil diupdate');
+    }
+    
+    public function destroy($id)
+    {
+        $item = Item::findOrFail($id);
+        $item->delete();
+        return redirect()->back()->with('success', 'Item berhasil dihapus');
     }
 }
