@@ -47,8 +47,9 @@ $inventory = [
     ],
 ];
 
-Route::get('/', function () {
-    return view('welcome');
+
+Route::get('/', function () use ($inventory) {
+    return view('home', ['inventory' => $inventory]);
 });
 
 Route::get('/history', function () {
@@ -99,13 +100,14 @@ Route::get('/history', function () {
     return view('history', ['history' => $history]);
 })->name('inventory.history');
 
-Route::get('/home', function () use ($inventory) {
-    return view('home', ['inventory' => $inventory]);
-});
 
 Route::get('/inventory/create', function () {
     return view('create'); // Or 'inventory.create' if using folders
 })->name('inventory.create');
+
+Route::get('/inventory', function () use ($inventory) {
+    return view('', ['inventory' => $inventory]);
+})->name('inventory.index');
 
 // Route for edit form
 Route::get('/inventory/{id}/edit', function ($id) use ($inventory) {
@@ -117,16 +119,16 @@ Route::get('/inventory/{id}/edit', function ($id) use ($inventory) {
     return view('edit', ['item' => $item]); // Or 'inventory.edit' if using folders
 })->name('inventory.edit');
 
+
 // Routes for form submissions (POST, PUT, DELETE)
 // These are dummy routes that will redirect back to dashboard
 Route::post('/inventory', function () {
-    return redirect('home')->with('success', 'Item added successfully!');
+    return redirect('')->with('success', 'Item added successfully!');
 })->name('inventory.store');
 
+
 Route::put('/inventory/{id}', function ($id) {
-    return redirect('home')->with('success', 'Item updated successfully!');
+    return redirect('')->with('success', 'Item updated successfully!');
 })->name('inventory.update');
 
-Route::get('/inventory', function () use ($inventory) {
-    return view('home', ['inventory' => $inventory]);
-})->name('inventory.index');
+
