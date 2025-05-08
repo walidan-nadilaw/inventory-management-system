@@ -2033,3 +2033,7 @@ Did you mean one of these?
 #30 C:\\laragon\\www\\inventory-management-system\\public\\index.php(20): Illuminate\\Foundation\\Application->handleRequest(Object(Illuminate\\Http\\Request))
 #31 {main}
 "} 
+[2025-05-08 12:19:46] local.ERROR: Trait "Illuminate\Database\Eloquent\Factory\HasFactory" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"Illuminate\\Database\\Eloquent\\Factory\\HasFactory\" not found at C:\\laragon\\www\\inventory-management-system\\app\\Models\\Inventory.php:9)
+[stacktrace]
+#0 {main}
+"} 

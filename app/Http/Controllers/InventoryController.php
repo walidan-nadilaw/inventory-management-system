@@ -12,7 +12,8 @@ class InventoryController extends Controller
      */
     public function index()
     {
-        //
+        $inventory = \App\Models\Inventory::all();
+        return view('home', compact('inventory'));
     }
 
     /**
@@ -20,7 +21,7 @@ class InventoryController extends Controller
      */
     public function create()
     {
-        //
+        return view('create');
     }
 
     /**
@@ -28,7 +29,13 @@ class InventoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Inventory::create($request->validate([
+            'name' => 'required',
+            'type' => 'required',
+            'quantity' => 'required|integer',
+        ]));
+    
+        return redirect()->route('home');
     }
 
     /**
@@ -42,24 +49,33 @@ class InventoryController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Inventory $inventory)
+    public function edit($id)
     {
-        //
+        $item = Inventory::findOrFail($id);
+        return view('edit', compact('item'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Inventory $inventory)
+    public function update(Request $request, $id)
     {
-        //
+        $item = Inventory::findOrFail($id);
+        $item->update($request->validate([
+            'name' => 'required',
+            'type' => 'required',
+            'quantity' => 'required|integer',
+        ]));
+    
+        return redirect()->route('home');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Inventory $inventory)
+    public function destroy($id)
     {
-        //
+        Inventory::findOrFail($id)->delete();
+        return redirect()->route('home');
     }
 }
