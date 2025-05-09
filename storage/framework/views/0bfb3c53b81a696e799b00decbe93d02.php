@@ -9,19 +9,21 @@
             </div>
 
             <div class="bg-white rounded-lg shadow-sm p-6">
-                <form action="<?php echo e(route('inventory.store')); ?>" method="POST" class="space-y-6">
+                <form action="<?php echo e(route('inventory.store')); ?>" method="POST" class="space-y-6" enctype="multipart/form-data">
                     <?php echo csrf_field(); ?>
-                    
+
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
                             <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Nama Produk</label>
-                            <input type="text" name="name" id="name" value="<?php echo e(old('name')); ?>" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50" required>
+                            <input type="text" name="name" id="name" value="<?php echo e(old('name')); ?>"
+                                   autocomplete="off" aria-describedby="name-error"
+                                   class="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-600 focus:ring focus:ring-blue-500 focus:ring-opacity-50" required>
                             <?php $__errorArgs = ['name'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?>
-                                <span class="text-red-500 text-sm"><?php echo e($message); ?></span>
+                                <span id="name-error" class="text-red-500 text-sm mt-1 block"><?php echo e($message); ?></span>
                             <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
@@ -30,22 +32,26 @@ unset($__errorArgs, $__bag); ?>
 
                         <div>
                             <label for="category" class="block text-sm font-medium text-gray-700 mb-1">Kategori</label>
-                            <select name="category" id="category" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50" required>
+                            <select name="category" id="category"
+                                    aria-describedby="category-error"
+                                    class="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-600 focus:ring focus:ring-blue-500 focus:ring-opacity-50" required>
                                 <option value="">Pilih Kategori</option>
-                                <option value="Elektronik" <?php echo e(old('category') == 'Elektronik' ? 'selected' : ''); ?>>Elektronik</option>
-                                <option value="Pakaian" <?php echo e(old('category') == 'Pakaian' ? 'selected' : ''); ?>>Pakaian</option>
-                                <option value="Makanan" <?php echo e(old('category') == 'Makanan' ? 'selected' : ''); ?>>Makanan</option>
-                                <option value="Minuman" <?php echo e(old('category') == 'Minuman' ? 'selected' : ''); ?>>Minuman</option>
-                                <option value="Kesehatan" <?php echo e(old('category') == 'Kesehatan' ? 'selected' : ''); ?>>Kesehatan</option>
-                                <option value="Alat Tulis" <?php echo e(old('category') == 'Alat Tulis' ? 'selected' : ''); ?>>Alat Tulis</option>
-                                <option value="Lainnya" <?php echo e(old('category') == 'Lainnya' ? 'selected' : ''); ?>>Lainnya</option>
+                                <?php
+                                    $categories = ['Elektronik', 'Pakaian', 'Makanan', 'Minuman', 'Kesehatan', 'Alat Tulis', 'Lainnya'];
+                                ?>
+                                <?php $__currentLoopData = $categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $category): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                    <option value="<?php echo e($category); ?>" <?php echo e(old('category') == $category ? 'selected' : ''); ?>>
+                                        <?php echo e($category); ?>
+
+                                    </option>
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                             </select>
                             <?php $__errorArgs = ['category'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?>
-                                <span class="text-red-500 text-sm"><?php echo e($message); ?></span>
+                                <span id="category-error" class="text-red-500 text-sm mt-1 block"><?php echo e($message); ?></span>
                             <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
@@ -54,13 +60,15 @@ unset($__errorArgs, $__bag); ?>
 
                         <div>
                             <label for="quantity" class="block text-sm font-medium text-gray-700 mb-1">Jumlah</label>
-                            <input type="number" name="quantity" id="quantity" value="<?php echo e(old('quantity')); ?>" min="0" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50" required>
+                            <input type="number" name="quantity" id="quantity" min="0" value="<?php echo e(old('quantity')); ?>"
+                                   autocomplete="off" aria-describedby="quantity-error"
+                                   class="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-600 focus:ring focus:ring-blue-500 focus:ring-opacity-50" required>
                             <?php $__errorArgs = ['quantity'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?>
-                                <span class="text-red-500 text-sm"><?php echo e($message); ?></span>
+                                <span id="quantity-error" class="text-red-500 text-sm mt-1 block"><?php echo e($message); ?></span>
                             <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
@@ -69,28 +77,15 @@ unset($__errorArgs, $__bag); ?>
 
                         <div>
                             <label for="price" class="block text-sm font-medium text-gray-700 mb-1">Harga (Rp)</label>
-                            <input type="number" name="price" id="price" value="<?php echo e(old('price')); ?>" min="0" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50" required>
+                            <input type="number" name="price" id="price" min="0" value="<?php echo e(old('price')); ?>"
+                                   autocomplete="off" aria-describedby="price-error"
+                                   class="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-600 focus:ring focus:ring-blue-500 focus:ring-opacity-50" required>
                             <?php $__errorArgs = ['price'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?>
-                                <span class="text-red-500 text-sm"><?php echo e($message); ?></span>
-                            <?php unset($message);
-if (isset($__messageOriginal)) { $message = $__messageOriginal; }
-endif;
-unset($__errorArgs, $__bag); ?>
-                        </div>
-                        
-                        <div class="md:col-span-2">
-                            <label for="description" class="block text-sm font-medium text-gray-700 mb-1">Deskripsi</label>
-                            <textarea name="description" id="description" rows="3" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50"><?php echo e(old('description')); ?></textarea>
-                            <?php $__errorArgs = ['description'];
-$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
-if ($__bag->has($__errorArgs[0])) :
-if (isset($message)) { $__messageOriginal = $message; }
-$message = $__bag->first($__errorArgs[0]); ?>
-                                <span class="text-red-500 text-sm"><?php echo e($message); ?></span>
+                                <span id="price-error" class="text-red-500 text-sm mt-1 block"><?php echo e($message); ?></span>
                             <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
@@ -102,7 +97,7 @@ unset($__errorArgs, $__bag); ?>
                         <a href="<?php echo e(route('inventory.index')); ?>" class="bg-gray-300 hover:bg-gray-400 text-gray-800 px-6 py-2 rounded-md font-medium focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500">
                             Batal
                         </a>
-                        <button type="submit" class="bg-primary hover:bg-primary-hover text-white px-6 py-2 rounded-md font-medium focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary">
+                        <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-md font-medium focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-600">
                             <i class="fas fa-save mr-2"></i> Simpan
                         </button>
                     </div>
@@ -111,4 +106,5 @@ unset($__errorArgs, $__bag); ?>
         </div>
     </div>
 <?php $__env->stopSection(); ?>
+
 <?php echo $__env->make('layouts.app', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?><?php /**PATH C:\laragon\www\inventory-management-system\resources\views/create.blade.php ENDPATH**/ ?>
