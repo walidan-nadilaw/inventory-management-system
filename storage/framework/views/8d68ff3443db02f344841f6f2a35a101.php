@@ -35,8 +35,7 @@
                         <td class="px-4 py-3"><?php echo e($item['category']); ?></td>
                         <td class="px-4 py-3"><?php echo e($item['quantity']); ?></td>
                         <td class="px-4 py-3">Rp <?php echo e(number_format($item['price'], 0, ',', '.')); ?></td>
-                        <td class="px-4 py-3"><?php echo e($item['last_updated']); ?></td>
-                        <td class="px-4 py-3">
+                        <td class="px-4 py-3"><?php echo e($item['updated_at']->format('Y-m-d H:i')); ?></td>                        <td class="px-4 py-3">
                             <div class="flex space-x-2">
                                 <a href="<?php echo e(route('inventory.edit', $item['id'])); ?>" class="bg-warning hover:bg-amber-500 text-white px-3 py-1 rounded flex items-center">
                                     <i class="fas fa-edit mr-1"></i> Edit
