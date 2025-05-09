@@ -15,9 +15,9 @@
                     
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
-                            <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Nama Produk</label>
-                            <input type="text" name="name" id="name" value="<?php echo e(old('name', $item['name'])); ?>" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50" required>
-                            <?php $__errorArgs = ['name'];
+                            <label for="item" class="block text-sm font-medium text-gray-700 mb-1">Nama Produk</label>
+                            <input type="text" name="item" id="item" value="<?php echo e(old('item', $item['item'])); ?>" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50" required>
+                            <?php $__errorArgs = ['item'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }

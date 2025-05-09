@@ -5,7 +5,7 @@
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center mb-6">
                 <h1 class="text-2xl font-bold text-gray-900">Tambah Item Baru</h1>
-                <a href="{{ route('inventory.index') }}" class="bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded-md flex items-center">
+                <a href="{{ route('home') }}" class="bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded-md flex items-center">
                     <i class="fas fa-arrow-left mr-2"></i> Kembali
                 </a>
             </div>
@@ -16,12 +16,12 @@
 
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
-                            <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Nama Produk</label>
-                            <input type="text" name="name" id="name" value="{{ old('name') }}"
-                                   autocomplete="off" aria-describedby="name-error"
+                            <label for="item" class="block text-sm font-medium text-gray-700 mb-1">Nama Produk</label>
+                            <input type="text" name="item" id="item" value="{{ old('item') }}"
+                                   autocomplete="off" aria-describedby="item-error"
                                    class="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-600 focus:ring focus:ring-blue-500 focus:ring-opacity-50" required>
-                            @error('name')
-                                <span id="name-error" class="text-red-500 text-sm mt-1 block">{{ $message }}</span>
+                            @error('item')
+                                <span id="item-error" class="text-red-500 text-sm mt-1 block">{{ $message }}</span>
                             @enderror
                         </div>
 
