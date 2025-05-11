@@ -29,14 +29,17 @@ class InventoryController extends Controller
      */
     public function store(Request $request)
     {
-        Inventory::create($request->validate([
-            'name' => 'required',
-            'type' => 'required',
-            'quantity' => 'required|integer',
-        ]));
+        $validated = $request->validate([
+            'name' => 'required|string',
+            'category' => 'required|string',
+            'quantity' => 'required|integer|min:0',
+            'price' => 'required|integer|min:0',
+        ]);
     
-        return redirect()->route('home');
-    }
+        Inventory::create($validated);
+    
+        return redirect()->route('home')->with('success', 'Item berhasil ditambahkan.');
+    }    
 
     /**
      * Display the specified resource.
@@ -62,9 +65,10 @@ class InventoryController extends Controller
     {
         $item = Inventory::findOrFail($id);
         $item->update($request->validate([
-            'name' => 'required',
-            'type' => 'required',
-            'quantity' => 'required|integer',
+            'name' => 'required|string',
+            'category' => 'required|string',
+            'quantity' => 'required|integer|min:0',
+            'price' => 'required|integer|min:0',
         ]));
     
         return redirect()->route('home');

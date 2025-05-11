@@ -31,7 +31,7 @@
                     @forelse($inventory as $item)
                     <tr class="border-b border-gray-100 hover:bg-gray-50">
                         <td class="px-4 py-3">{{ $item['id'] }}</td>
-                        <td class="px-4 py-3">{{ $item['name'] }}</td>
+                        <td class="px-4 py-3">{{ $item['item'] }}</td>
                         <td class="px-4 py-3">{{ $item['category'] }}</td>
                         <td class="px-4 py-3">{{ $item['quantity'] }}</td>
                         <td class="px-4 py-3">Rp {{ number_format($item['price'], 0, ',', '.') }}</td>

@@ -31,7 +31,7 @@
                     <?php $__empty_1 = true; $__currentLoopData = $inventory; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
                     <tr class="border-b border-gray-100 hover:bg-gray-50">
                         <td class="px-4 py-3"><?php echo e($item['id']); ?></td>
-                        <td class="px-4 py-3"><?php echo e($item['name']); ?></td>
+                        <td class="px-4 py-3"><?php echo e($item['item']); ?></td>
                         <td class="px-4 py-3"><?php echo e($item['category']); ?></td>
                         <td class="px-4 py-3"><?php echo e($item['quantity']); ?></td>
                         <td class="px-4 py-3">Rp <?php echo e(number_format($item['price'], 0, ',', '.')); ?></td>
