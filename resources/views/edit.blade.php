@@ -60,13 +60,6 @@
                             @enderror
                         </div>
                         
-                        <div class="md:col-span-2">
-                            <label for="description" class="block text-sm font-medium text-gray-700 mb-1">Deskripsi</label>
-                            <textarea name="description" id="description" rows="3" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50">{{ old('description', $item['description'] ?? '') }}</textarea>
-                            @error('description')
-                                <span class="text-red-500 text-sm">{{ $message }}</span>
-                            @enderror
-                        </div>
                     </div>
 
                     <div class="flex justify-end space-x-3 pt-4">

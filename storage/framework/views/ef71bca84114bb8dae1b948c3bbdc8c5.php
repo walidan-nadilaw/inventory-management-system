@@ -86,20 +86,6 @@ endif;
 unset($__errorArgs, $__bag); ?>
                         </div>
                         
-                        <div class="md:col-span-2">
-                            <label for="description" class="block text-sm font-medium text-gray-700 mb-1">Deskripsi</label>
-                            <textarea name="description" id="description" rows="3" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50"><?php echo e(old('description', $item['description'] ?? '')); ?></textarea>
-                            <?php $__errorArgs = ['description'];
-$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
-if ($__bag->has($__errorArgs[0])) :
-if (isset($message)) { $__messageOriginal = $message; }
-$message = $__bag->first($__errorArgs[0]); ?>
-                                <span class="text-red-500 text-sm"><?php echo e($message); ?></span>
-                            <?php unset($message);
-if (isset($__messageOriginal)) { $message = $__messageOriginal; }
-endif;
-unset($__errorArgs, $__bag); ?>
-                        </div>
                     </div>
 
                     <div class="flex justify-end space-x-3 pt-4">

@@ -30,7 +30,7 @@ class InventoryController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'name' => 'required|string',
+            'item' => 'required|string',
             'category' => 'required|string',
             'quantity' => 'required|integer|min:0',
             'price' => 'required|integer|min:0',
@@ -38,7 +38,7 @@ class InventoryController extends Controller
     
         Inventory::create($validated);
     
-        return redirect()->route('home')->with('success', 'Item berhasil ditambahkan.');
+        return redirect()->route('home')->with('add', 'Item berhasil ditambahkan.');
     }    
 
     /**
@@ -65,13 +65,13 @@ class InventoryController extends Controller
     {
         $item = Inventory::findOrFail($id);
         $item->update($request->validate([
-            'name' => 'required|string',
+            'item' => 'required|string',
             'category' => 'required|string',
             'quantity' => 'required|integer|min:0',
             'price' => 'required|integer|min:0',
         ]));
     
-        return redirect()->route('home');
+        return redirect()->route('home')->with('update', 'item berhasil diupdate');
     }
 
     /**
@@ -80,6 +80,6 @@ class InventoryController extends Controller
     public function destroy($id)
     {
         Inventory::findOrFail($id)->delete();
-        return redirect()->route('home');
+        return redirect()->route('home')->with('delete', 'item berhasil dihapus');
     }
 }

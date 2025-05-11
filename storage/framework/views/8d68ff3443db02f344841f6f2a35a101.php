@@ -1,6 +1,24 @@
 
 
 <?php $__env->startSection('content'); ?>
+
+    <?php if(session('add')): ?>
+        <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-4">
+            <?php echo e(session('add')); ?>
+
+        </div>
+    <?php elseif(session('delete')): ?>
+        <div class="bg-yellow-100 border border-yellow-400 text-yellow-700 px-4 py-3 rounded mb-4">
+            <?php echo e(session('delete')); ?>
+
+        </div>
+    <?php elseif(session('update')): ?>
+        <div class="bg-blue-100 border border-blue-400 text-blue-700 px-4 py-3 rounded mb-4">
+            <?php echo e(session('update')); ?>
+
+        </div>
+    <?php endif; ?>
+
     <div class="bg-white rounded-lg shadow-sm p-6 mb-8">
         <h2 class="text-xl font-semibold mb-3">Selamat Datang di Inventory Management System</h2>
         <p class="text-gray-600">Kelola inventaris Anda dengan mudah dan efisien. Gunakan sistem ini untuk melacak stok, memantau pergerakan barang, dan mengoptimalkan proses inventory Anda.</p>
