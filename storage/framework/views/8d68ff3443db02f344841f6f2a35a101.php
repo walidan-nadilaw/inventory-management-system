@@ -1,8 +1,24 @@
 
 
 <?php $__env->startSection('content'); ?>
-    <h1 class="text-2xl font-bold mb-8 pb-4 border-b border-gray-200">Dashboard</h1>
-    
+
+    <?php if(session('add')): ?>
+        <div class="bg-blue-100 border border-blue-400 text-blue-700 px-4 py-3 rounded mb-4">
+            <?php echo e(session('add')); ?>
+
+        </div>
+    <?php elseif(session('delete')): ?>
+        <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
+            <?php echo e(session('delete')); ?>
+
+        </div>
+    <?php elseif(session('update')): ?>
+        <div class="bg-yellow-100 border border-yellow-400 text-yellow-700 px-4 py-3 rounded mb-4">
+            <?php echo e(session('update')); ?>
+
+        </div>
+    <?php endif; ?>
+
     <div class="bg-white rounded-lg shadow-sm p-6 mb-8">
         <h2 class="text-xl font-semibold mb-3">Selamat Datang di Inventory Management System</h2>
         <p class="text-gray-600">Kelola inventaris Anda dengan mudah dan efisien. Gunakan sistem ini untuk melacak stok, memantau pergerakan barang, dan mengoptimalkan proses inventory Anda.</p>
@@ -11,7 +27,7 @@
     <div class="bg-white rounded-lg shadow-sm p-6">
         <div class="flex justify-between items-center mb-6">
             <h3 class="text-lg font-semibold">Daftar Inventory</h3>
-            <a href="/inventory/create" class="bg-primary hover:bg-primary-hover text-white px-4 py-2 rounded-md flex items-center">
+            <a href="<?php echo e(route('inventory.create')); ?>" class="bg-primary hover:bg-primary-hover text-white px-4 py-2 rounded-md flex items-center">
                 <i class="fas fa-plus mr-2"></i> Tambah Item Baru
             </a>
         </div>
@@ -33,14 +49,13 @@
                     <?php $__empty_1 = true; $__currentLoopData = $inventory; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
                     <tr class="border-b border-gray-100 hover:bg-gray-50">
                         <td class="px-4 py-3"><?php echo e($item['id']); ?></td>
-                        <td class="px-4 py-3"><?php echo e($item['name']); ?></td>
+                        <td class="px-4 py-3"><?php echo e($item['item']); ?></td>
                         <td class="px-4 py-3"><?php echo e($item['category']); ?></td>
                         <td class="px-4 py-3"><?php echo e($item['quantity']); ?></td>
                         <td class="px-4 py-3">Rp <?php echo e(number_format($item['price'], 0, ',', '.')); ?></td>
-                        <td class="px-4 py-3"><?php echo e($item['last_updated']); ?></td>
-                        <td class="px-4 py-3">
+                        <td class="px-4 py-3"><?php echo e($item['updated_at']->format('Y-m-d H:i')); ?></td>                        <td class="px-4 py-3">
                             <div class="flex space-x-2">
-                                <a href="/inventory/<?php echo e($item['id']); ?>/edit" class="bg-warning hover:bg-amber-500 text-white px-3 py-1 rounded flex items-center">
+                                <a href="<?php echo e(route('inventory.edit', $item['id'])); ?>" class="bg-warning hover:bg-amber-500 text-white px-3 py-1 rounded flex items-center">
                                     <i class="fas fa-edit mr-1"></i> Edit
                                 </a>
                                 <button type="button" 

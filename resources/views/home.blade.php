@@ -1,6 +1,21 @@
 @extends('layouts.app')
 
 @section('content')
+
+    @if(session('add'))
+        <div class="bg-blue-100 border border-blue-400 text-blue-700 px-4 py-3 rounded mb-4">
+            {{ session('add') }}
+        </div>
+    @elseif(session('delete'))
+        <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
+            {{ session('delete') }}
+        </div>
+    @elseif(session('update'))
+        <div class="bg-yellow-100 border border-yellow-400 text-yellow-700 px-4 py-3 rounded mb-4">
+            {{ session('update') }}
+        </div>
+    @endif
+
     <div class="bg-white rounded-lg shadow-sm p-6 mb-8">
         <h2 class="text-xl font-semibold mb-3">Selamat Datang di Inventory Management System</h2>
         <p class="text-gray-600">Kelola inventaris Anda dengan mudah dan efisien. Gunakan sistem ini untuk melacak stok, memantau pergerakan barang, dan mengoptimalkan proses inventory Anda.</p>
@@ -31,12 +46,11 @@
                     @forelse($inventory as $item)
                     <tr class="border-b border-gray-100 hover:bg-gray-50">
                         <td class="px-4 py-3">{{ $item['id'] }}</td>
-                        <td class="px-4 py-3">{{ $item['name'] }}</td>
+                        <td class="px-4 py-3">{{ $item['item'] }}</td>
                         <td class="px-4 py-3">{{ $item['category'] }}</td>
                         <td class="px-4 py-3">{{ $item['quantity'] }}</td>
                         <td class="px-4 py-3">Rp {{ number_format($item['price'], 0, ',', '.') }}</td>
-                        <td class="px-4 py-3">{{ $item['last_updated'] }}</td>
-                        <td class="px-4 py-3">
+                        <td class="px-4 py-3">{{ $item['updated_at']->format('Y-m-d H:i') }}</td>                        <td class="px-4 py-3">
                             <div class="flex space-x-2">
                                 <a href="{{ route('inventory.edit', $item['id']) }}" class="bg-warning hover:bg-amber-500 text-white px-3 py-1 rounded flex items-center">
                                     <i class="fas fa-edit mr-1"></i> Edit
