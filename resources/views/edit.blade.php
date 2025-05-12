@@ -28,9 +28,6 @@
                             <label for="category" class="block text-sm font-medium text-gray-700 mb-1">Kategori</label>
                             <select name="category" id="category" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50" required>
                                 <option value="">Pilih Kategori</option>
-                                <option value="Electronics" {{ old('category', $item['category']) == 'Electronics' ? 'selected' : '' }}>Electronics</option>
-                                <option value="Office Supplies" {{ old('category', $item['category']) == 'Office Supplies' ? 'selected' : '' }}>Office Supplies</option>
-                                <option value="Furniture" {{ old('category', $item['category']) == 'Furniture' ? 'selected' : '' }}>Furniture</option>
                                 <option value="Elektronik" {{ old('category', $item['category']) == 'Elektronik' ? 'selected' : '' }}>Elektronik</option>
                                 <option value="Pakaian" {{ old('category', $item['category']) == 'Pakaian' ? 'selected' : '' }}>Pakaian</option>
                                 <option value="Makanan" {{ old('category', $item['category']) == 'Makanan' ? 'selected' : '' }}>Makanan</option>
