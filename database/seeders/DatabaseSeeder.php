@@ -15,31 +15,31 @@ class DatabaseSeeder extends Seeder
         $data = [
             [
                 'item' => 'Product A',
-                'category' => 'Electronics',
+                'category' => 'Elektronik',
                 'quantity' => 50,
                 'price' => 300000, // stored as integer (e.g. 299.99 => 29999)
             ],
             [
                 'item' => 'Product B',
-                'category' => 'Office Supplies',
+                'category' => 'Alat tulis',
                 'quantity' => 120,
                 'price' => 5000,
             ],
             [
                 'item' => 'Product C',
-                'category' => 'Furniture',
+                'category' => 'Kesehatan',
                 'quantity' => 15,
                 'price' => 60000,
             ],
             [
                 'item' => 'Product D',
-                'category' => 'Electronics',
+                'category' => 'Elektronik',
                 'quantity' => 35,
                 'price' => 150000,
             ],
             [
                 'item' => 'Product E',
-                'category' => 'Office Supplies',
+                'category' => 'Alat tulis',
                 'quantity' => 80,
                 'price' => 3000,
             ],
