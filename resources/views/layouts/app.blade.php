@@ -46,7 +46,7 @@
                         <i class="fas fa-history mr-3"></i> History
                     </a>
                 </li>
-                <li>
+                <!-- <li>
                     <a href="/reports" class="flex items-center px-4 py-3 rounded-md hover:bg-gray-600 transition-colors text-gray-300 hover:text-white">
                         <i class="fas fa-chart-bar mr-3"></i> Reports
                     </a>
@@ -55,7 +55,7 @@
                     <a href="/settings" class="flex items-center px-4 py-3 rounded-md hover:bg-gray-600 transition-colors text-gray-300 hover:text-white">
                         <i class="fas fa-cog mr-3"></i> Settings
                     </a>
-                </li>
+                </li> -->
             </ul>
         </div>
         
