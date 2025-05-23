@@ -10,7 +10,7 @@ Route::resource('inventory', InventoryController::class)->except(['show']);
 
 // Di routes/web.php
 Route::get('/login', function () { // Anda bisa menggunakan URL yang lebih spesifik
-    return view('auth.login_single');
+    return view('auth.login');
 })->name('login.form'); // Beri nama route
 
 // Di routes/web.php
