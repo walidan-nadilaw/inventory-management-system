@@ -15,13 +15,13 @@
                 <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z" />
             </svg>
             <h2 class="mt-4 text-2xl font-bold text-gray-900">
-                Akses Terbatas
+                Sistem Manajemen Barang Toko Sumber Plastik
             </h2>
             <p class="text-sm text-gray-600 mt-1">Silakan masukkan kredensial Anda.</p>
         </div>
 
         {{-- Tempat untuk menampilkan pesan error jika login gagal (opsional) --}}
-        {{-- @if ($errors->any())
+        @if ($errors->any())
             <div class="bg-red-50 border-l-4 border-red-400 p-4 mb-4">
                 <div class="flex">
                     <div class="flex-shrink-0">
@@ -36,7 +36,7 @@
                     </div>
                 </div>
             </div>
-        @endif --}}
+        @endif
 
         <form action="{{-- URL untuk proses login Anda (misal: {{ route('login.process') }} ) --}}" method="POST" class="space-y-6">
             @csrf {{-- Token CSRF Laravel --}}
@@ -46,7 +46,6 @@
                 <div class="mt-2">
                     <input id="username" name="username" type="text"
                            class="block w-full rounded-md border-0 py-2 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                           placeholder="user_tunggal"
                            required
                            autofocus>
                     {{-- @error('username')
@@ -61,7 +60,6 @@
                     <input id="password" name="password" type="password"
                            autocomplete="current-password"
                            class="block w-full rounded-md border-0 py-2 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                           placeholder="••••••••"
                            required>
                     {{-- @error('password')
                         <p class="mt-1 text-xs text-red-500">{{ $message }}</p>
