@@ -7,6 +7,11 @@ use App\Http\Controllers\InventoryController;
 Route::get('/', [InventoryController::class, 'index'])->name('home');
 Route::resource('inventory', InventoryController::class)->except(['show']);
 
+// Contoh route di web.php
+Route::get('/login', function () {
+    return view('auth.login'); // Sesuaikan dengan nama dan lokasi file Anda
+})->name('login'); // Memberi nama route agar mudah dipanggil
+
 Route::fallback(function () {
     return redirect()->route('home')->with('error', 'Halaman tidak ditemukan.');
 });
