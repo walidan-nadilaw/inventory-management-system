@@ -2,15 +2,19 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\InventoryController;
+use App\Http\Controllers\LoginController;
 
 // Load from controller
 Route::get('/', [InventoryController::class, 'index'])->name('home');
 Route::resource('inventory', InventoryController::class)->except(['show']);
 
-// Contoh route di web.php
-Route::get('/login', function () {
-    return view('auth.login'); // Sesuaikan dengan nama dan lokasi file Anda
-})->name('login'); // Memberi nama route agar mudah dipanggil
+// Di routes/web.php
+Route::get('/login', function () { // Anda bisa menggunakan URL yang lebih spesifik
+    return view('auth.login_single');
+})->name('login.form'); // Beri nama route
+
+// Di routes/web.php
+Route::post('/login/process', [LoginController::class, 'handleLogin'])->name('login.process');
 
 Route::fallback(function () {
     return redirect()->route('home')->with('error', 'Halaman tidak ditemukan.');
