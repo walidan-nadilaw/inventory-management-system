@@ -47,9 +47,12 @@
                     </a>
                 </li>
                 <li>
-                    <a href="/logout" class="flex items-center px-4 py-3 rounded-md hover:bg-gray-600 transition-colors text-gray-300 hover:text-white">
-                        <i class="fas fa-arrow-right-from-bracket mr-3"></i> Logout
-                    </a>
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+                        <button type="submit" class="w-full text-left flex items-center px-4 py-3 rounded-md hover:bg-gray-600 transition-colors text-gray-300 hover:text-white">
+                            <i class="fas fa-arrow-right-from-bracket mr-3"></i> Logout
+                        </button>
+                    </form>
                 </li>
             </ul>
         </div>

@@ -67,3 +67,5 @@ Route::get('/history', function () {
     
     return view('history', ['history' => $history]);
 })->name('inventory.history');
+
+Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
