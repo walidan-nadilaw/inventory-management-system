@@ -38,7 +38,7 @@
             </div>
         @endif
 
-        <form action="{{-- URL untuk proses login Anda (misal: {{ route('login.process') }} ) --}}" method="POST" class="space-y-6">
+        <form action="{{ route('login.process') }}" method="POST" class="space-y-6">
             @csrf {{-- Token CSRF Laravel --}}
 
             <div>
