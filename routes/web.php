@@ -102,3 +102,23 @@ Route::get('/home', function () {
     
     return view('home', ['inventory' => $inventory]);
 });
+
+// use Illuminate\Support\Facades\Hash;
+
+// Route::get('/generate-hash', function () {
+//     return Hash::make('user123'); 
+// });
+
+use App\Http\Controllers\AuthController;
+
+Route::get('login', [AuthController::class, 'showLoginForm'])->name('login');
+Route::post('login', [AuthController::class, 'login']);
+
+use App\Http\Controllers\Auth\LoginController;
+
+Route::get('login', [LoginController::class, 'showLoginForm'])->name('login');
+Route::post('login', [LoginController::class, 'login']);
+Route::post('logout', [LoginController::class, 'logout'])->name('logout');
+Route::get('dashboard', function () {
+    return view('dashboard');
+})->middleware('auth');
