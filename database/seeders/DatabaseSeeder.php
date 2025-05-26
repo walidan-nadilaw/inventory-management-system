@@ -2,8 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Inventory;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -13,11 +12,46 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
+        $data = [
+            [
+                'item' => 'Product A',
+                'category' => 'Elektronik',
+                'quantity' => 50,
+                'price' => 300000, // stored as integer (e.g. 299.99 => 29999)
+            ],
+            [
+                'item' => 'Product B',
+                'category' => 'Alat tulis',
+                'quantity' => 120,
+                'price' => 5000,
+            ],
+            [
+                'item' => 'Product C',
+                'category' => 'Kesehatan',
+                'quantity' => 15,
+                'price' => 60000,
+            ],
+            [
+                'item' => 'Product D',
+                'category' => 'Elektronik',
+                'quantity' => 35,
+                'price' => 150000,
+            ],
+            [
+                'item' => 'Product E',
+                'category' => 'Alat tulis',
+                'quantity' => 80,
+                'price' => 3000,
+            ],
+        ];
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-        ]);
+        foreach ($data as $item) {
+            Inventory::create($item);
+        }
     }
 }
+
+
+
+
+

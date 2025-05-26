@@ -37,7 +37,7 @@
             </div>
             <ul class="space-y-1 px-3">
                 <li>
-                    <a href="<?php echo e(route('home')); ?>" class="flex items-center px-4 py-3 rounded-md hover:bg-gray-600 transition-colors text-gray-300 hover:text-white <?php echo e(request()->is('home') || request()->is('/') ? 'bg-primary text-white' : ''); ?>">
+                    <a href="<?php echo e(route('home')); ?>" class="flex items-center px-4 py-3 rounded-md hover:bg-gray-600 transition-colors text-gray-300 hover:text-white <?php echo e(request()->is('/') ? 'bg-primary text-white' : ''); ?>">
                         <i class="fas fa-home mr-3"></i> Home
                     </a>
                 </li>
@@ -47,14 +47,12 @@
                     </a>
                 </li>
                 <li>
-                    <a href="/reports" class="flex items-center px-4 py-3 rounded-md hover:bg-gray-600 transition-colors text-gray-300 hover:text-white">
-                        <i class="fas fa-chart-bar mr-3"></i> Reports
-                    </a>
-                </li>
-                <li>
-                    <a href="/settings" class="flex items-center px-4 py-3 rounded-md hover:bg-gray-600 transition-colors text-gray-300 hover:text-white">
-                        <i class="fas fa-cog mr-3"></i> Settings
-                    </a>
+                    <form method="POST" action="<?php echo e(route('logout')); ?>">
+                        <?php echo csrf_field(); ?>
+                        <button type="submit" class="w-full text-left flex items-center px-4 py-3 rounded-md hover:bg-gray-600 transition-colors text-gray-300 hover:text-white">
+                            <i class="fas fa-arrow-right-from-bracket mr-3"></i> Logout
+                        </button>
+                    </form>
                 </li>
             </ul>
         </div>
