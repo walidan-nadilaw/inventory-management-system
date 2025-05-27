@@ -1,5 +1,4 @@
 @extends('layouts.app')
-
 @section('content')
 
     @if(session('add'))
@@ -74,57 +73,112 @@
         </div>
     </div>
 
-    <!-- Delete Confirmation Modal -->
-    <div x-data="{ showModal: false, itemId: null }"
-         x-show="showModal" 
-         @open-modal.window="showModal = true; itemId = $event.detail.id"
-         @keydown.escape.window="showModal = false"
-         class="fixed inset-0 z-50 overflow-y-auto" 
-         style="display: none;">
-        <div class="flex items-center justify-center min-h-screen pt-4 px-4 text-center sm:block sm:p-0">
-            <div x-show="showModal" 
-                 x-transition:enter="ease-out duration-300" 
-                 x-transition:enter-start="opacity-0" 
-                 x-transition:enter-end="opacity-100" 
-                 x-transition:leave="ease-in duration-200" 
-                 x-transition:leave-start="opacity-100" 
-                 x-transition:leave-end="opacity-0" 
-                 class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
-
-            <div x-show="showModal" 
-                 x-transition:enter="ease-out duration-300" 
-                 x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95" 
-                 x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100" 
-                 x-transition:leave="ease-in duration-200" 
-                 x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100" 
-                 x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95" 
-                 class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
-                <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
-                    <div class="sm:flex sm:items-start">
-                        <div class="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-red-100 sm:mx-0 sm:h-10 sm:w-10">
-                            <i class="fas fa-exclamation-triangle text-red-600"></i>
-                        </div>
-                        <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
-                            <h3 class="text-lg leading-6 font-medium text-gray-900">Konfirmasi Hapus</h3>
-                            <div class="mt-2">
-                                <p class="text-sm text-gray-500">Apakah Anda yakin ingin menghapus item ini? Tindakan ini tidak dapat dibatalkan.</p>
-                            </div>
+<!-- Delete Confirmation Modal -->
+<div x-data="{ showDeleteModal: false, itemId: null }"
+     x-show="showDeleteModal" 
+     @open-delete-modal.window="showDeleteModal = true; itemId = $event.detail.id"
+     @keydown.escape.window="showDeleteModal = false"
+     class="fixed inset-0 z-50 overflow-y-auto" 
+     style="display: none;">
+    <div class="flex items-center justify-center min-h-screen pt-4 px-4 text-center sm:block sm:p-0">
+        <div x-show="showDeleteModal" 
+             x-transition:enter="ease-out duration-300" 
+             x-transition:enter-start="opacity-0" 
+             x-transition:enter-end="opacity-100" 
+             x-transition:leave="ease-in duration-200" 
+             x-transition:leave-start="opacity-100" 
+             x-transition:leave-end="opacity-0" 
+             class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
+        <div x-show="showDeleteModal" 
+             x-transition:enter="ease-out duration-300" 
+             x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95" 
+             x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100" 
+             x-transition:leave="ease-in duration-200" 
+             x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100" 
+             x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95" 
+             class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
+            <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                <div class="sm:flex sm:items-start">
+                    <div class="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-red-100 sm:mx-0 sm:h-10 sm:w-10">
+                        <i class="fas fa-exclamation-triangle text-red-600"></i>
+                    </div>
+                    <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
+                        <h3 class="text-lg leading-6 font-medium text-gray-900">Konfirmasi Hapus</h3>
+                        <div class="mt-2">
+                            <p class="text-sm text-gray-500">Apakah Anda yakin ingin menghapus item ini? Tindakan ini tidak dapat dibatalkan.</p>
                         </div>
                     </div>
                 </div>
-                <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
-                    <form id="deleteForm" x-bind:action="'/inventory/' + itemId" method="POST">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-danger text-base font-medium text-white hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm">
-                            Hapus
-                        </button>
-                        <button type="button" @click="showModal = false" class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">
-                            Batal
-                        </button>
-                    </form>
-                </div>
+            </div>
+            <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+                <form x-bind:id="'deleteForm' + itemId" x-bind:action="'/items/' + itemId" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-danger text-base font-medium text-white hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm">
+                        Hapus
+                    </button>
+                    <button type="button" @click="showDeleteModal = false" class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">
+                        Batal
+                    </button>
+                </form>
             </div>
         </div>
     </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Custom validation messages for Add Modal
+        const hargaInput = document.getElementById('harga');
+        const jumlahInput = document.getElementById('jumlah');
+        
+        if (hargaInput) {
+            hargaInput.addEventListener('input', function() {
+                if (this.value < 0) {
+                    this.setCustomValidity('Value must be greater than or equal to 0');
+                } else {
+                    this.setCustomValidity('');
+                }
+            });
+        }
+        
+        if (jumlahInput) {
+            jumlahInput.addEventListener('input', function() {
+                if (this.value < 0) {
+                    this.setCustomValidity('Value must be greater than or equal to 0');
+                } else {
+                    this.setCustomValidity('');
+                }
+            });
+        }
+        
+        // For Edit Modal - we need to use Alpine.js events
+        document.addEventListener('open-edit-modal', function() {
+            setTimeout(() => {
+                const editHargaInput = document.getElementById('edit_harga');
+                const editJumlahInput = document.getElementById('edit_jumlah');
+                
+                if (editHargaInput) {
+                    editHargaInput.addEventListener('input', function() {
+                        if (this.value < 0) {
+                            this.setCustomValidity('Value must be greater than or equal to 0');
+                        } else {
+                            this.setCustomValidity('');
+                        }
+                    });
+                }
+                
+                if (editJumlahInput) {
+                    editJumlahInput.addEventListener('input', function() {
+                        if (this.value < 0) {
+                            this.setCustomValidity('Value must be greater than or equal to 0');
+                        } else {
+                            this.setCustomValidity('');
+                        }
+                    });
+                }
+            }, 100);
+        });
+    });
+</script>
 @endsection

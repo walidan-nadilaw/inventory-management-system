@@ -37,7 +37,7 @@
             </div>
             <ul class="space-y-1 px-3">
                 <li>
-                    <a href="/home" class="flex items-center px-4 py-3 rounded-md hover:bg-gray-600 transition-colors text-gray-300 hover:text-white {{ request()->is('home') ? 'bg-primary text-white' : '' }}">
+                    <a href="{{ route('home') }}" class="flex items-center px-4 py-3 rounded-md hover:bg-gray-600 transition-colors text-gray-300 hover:text-white {{ request()->is('/') ? 'bg-primary text-white' : '' }}">
                         <i class="fas fa-home mr-3"></i> Home
                     </a>
                 </li>
@@ -46,16 +46,16 @@
                         <i class="fas fa-history mr-3"></i> History
                     </a>
                 </li>
-                <!-- <li>
-                    <a href="/reports" class="flex items-center px-4 py-3 rounded-md hover:bg-gray-600 transition-colors text-gray-300 hover:text-white">
-                        <i class="fas fa-chart-bar mr-3"></i> Reports
-                    </a>
-                </li>
+
                 <li>
-                    <a href="/settings" class="flex items-center px-4 py-3 rounded-md hover:bg-gray-600 transition-colors text-gray-300 hover:text-white">
-                        <i class="fas fa-cog mr-3"></i> Settings
-                    </a>
-                </li> -->
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+                        <button type="submit" class="w-full text-left flex items-center px-4 py-3 rounded-md hover:bg-gray-600 transition-colors text-gray-300 hover:text-white">
+                            <i class="fas fa-arrow-right-from-bracket mr-3"></i> Logout
+                        </button>
+                    </form>
+                </li>
+
             </ul>
         </div>
         
@@ -64,7 +64,6 @@
             @yield('content')
         </div>
     </div>
-
     <!-- Alpine.js for interactivity (as a lightweight alternative to Bootstrap JS) -->
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </body>
