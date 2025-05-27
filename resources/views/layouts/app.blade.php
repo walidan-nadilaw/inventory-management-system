@@ -46,6 +46,7 @@
                         <i class="fas fa-history mr-3"></i> History
                     </a>
                 </li>
+
                 <li>
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf
@@ -54,6 +55,7 @@
                         </button>
                     </form>
                 </li>
+
             </ul>
         </div>
         
