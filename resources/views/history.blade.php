@@ -6,7 +6,7 @@
     <table class="w-full text-left">
         <thead class="bg-dark text-white">
             <tr>
-                <th class="px-4 py-3">Tanggal</th>
+                <th class="px-4 py-3">Waktu </th>
                 <th class="px-4 py-3">Item</th>
                 <th class="px-4 py-3">Aksi</th>
                 <th class="px-4 py-3">Jumlah Sebelumnya</th>
@@ -17,8 +17,8 @@
         <tbody>
             @forelse($histories as $history)
             <tr>
-                <td class="px-4 py-3">{{ $history->created_at->format('Y-m-d H:i') }}</td>
-                <td class="px-4 py-3">{{ $history->item }}</td>
+                <td class="px-4 py-3">{{ $history->created_at->subHour()->setTimezone('Asia/Singapore')->format('Y-m-d H:i:s') }}</td>
+                <td class="px-4 py-3">{{ $history->item }}</td> 
                 <td class="px-4 py-3">{{ ucfirst($history->action) }}</td>
                 <td class="px-4 py-3">{{ $history->old_quantity }}</td>
                 <td class="px-4 py-3">{{ $history->new_quantity }}</td>
