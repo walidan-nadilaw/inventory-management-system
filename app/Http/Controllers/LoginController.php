@@ -1,16 +1,12 @@
 <?php
 namespace App\Http\Controllers;
-// Contoh di dalam Controller
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth; // Jika tetap ingin menggunakan session guard Laravel
-// atau
-use Illuminate\Support\Facades\Session; // Untuk manajemen session manual sederhana
+use App\Models\User;
 
 class LoginController extends Controller
 {
-    // Kredensial yang "ditanam"
-    private $hardcodedUsername = 'admin'; // Ganti dengan username Anda
-    private $hardcodedPassword = 'admin123'; // GANTI DENGAN PASSWORD KUAT!
 
     public function showLoginForm()
     {
@@ -24,17 +20,14 @@ class LoginController extends Controller
             'password' => 'required|string',
         ]);
 
-        $username = $request->input('username');
-        $password = $request->input('password');
+        $credentials = $request->only('username', 'password');
 
-        if ($username === $this->hardcodedUsername && $password === $this->hardcodedPassword) {
-            // Login berhasil
-            // Anda bisa set session di sini untuk menandakan user sudah login
-            $request->session()->put('user_logged_in', true);
-            $request->session()->put('username', $username); // Simpan username jika perlu
-
-            // Redirect ke halaman dashboard atau halaman utama setelah login
-            return redirect()->intended('/'); // Ganti dengan route tujuan
+        if (Auth::attempt($credentials)) {
+            $request->session()->regenerate();
+            
+            $user = Auth::user();
+            
+            return redirect()->intended('/inventory')->with('login', "Selamat datang {$user->name}");
         }
 
         // Login gagal
@@ -45,10 +38,11 @@ class LoginController extends Controller
 
     public function logout(Request $request)
     {
-        $request->session()->forget('user_logged_in');
-        $request->session()->forget('username');
+        Auth::logout();
+        
         $request->session()->invalidate();
         $request->session()->regenerateToken();
-        return redirect()->route('login.form')->with('status', 'Anda telah berhasil logout.');
+        
+        return redirect()->route('login.form')->with('logout', 'Anda telah berhasil logout.');
     }
 }

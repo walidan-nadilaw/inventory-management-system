@@ -46,6 +46,7 @@
                         <i class="fas fa-history mr-3"></i> History
                     </a>
                 </li>
+
                 <li>
                     <form method="POST" action="<?php echo e(route('logout')); ?>">
                         <?php echo csrf_field(); ?>
@@ -54,6 +55,7 @@
                         </button>
                     </form>
                 </li>
+
             </ul>
         </div>
         

@@ -3,7 +3,9 @@
 namespace Database\Seeders;
 
 use App\Models\Inventory;
+use App\Models\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
@@ -12,7 +14,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        $data = [
+        $inventoryData = [
             [
                 'item' => 'Product A',
                 'category' => 'Elektronik',
@@ -45,8 +47,23 @@ class DatabaseSeeder extends Seeder
             ],
         ];
 
-        foreach ($data as $item) {
+        $userData = [
+            [
+                'username' => 'admin',
+                'password' => Hash::make('admin123'),            
+            ],
+            [
+                'username' => 'bdmin',
+                'password' => Hash::make('bdmi456'), // Simpan password yang sudah di-hash
+            ],
+        ];
+
+        foreach ($inventoryData as $item) {
             Inventory::create($item);
+        }
+
+        foreach ($userData as $user) {
+            User::create($user);
         }
     }
 }
