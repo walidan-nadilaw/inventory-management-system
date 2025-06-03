@@ -70,6 +70,11 @@ class InventoryController extends Controller
         return redirect()->route('home')->with('update', 'item berhasil diupdate');
     }
 
+    public function history(){
+        $histories = InventoryHistory::with('user')->latest()->get();
+        return view('history', compact('histories'));
+    }
+
     public function destroy($id)
     {
         Inventory::findOrFail($id)->delete();
