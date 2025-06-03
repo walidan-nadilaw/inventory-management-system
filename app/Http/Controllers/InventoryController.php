@@ -63,7 +63,7 @@ class InventoryController extends Controller
         InventoryHistory::create([
             'inventory_id' => $item->id,
             'item' => $item->item,
-            'action' => 'updated',
+            'action' => 'update',
             'old_quantity' => $oldQty,
             'new_quantity' => $validated['quantity'],
             'user_id' => $user->id,
@@ -80,7 +80,18 @@ class InventoryController extends Controller
 
     public function destroy($id)
     {
-        Inventory::findOrFail($id)->delete();
+        $user = User::findOrFail(auth()->id());
+        $item = Inventory::findOrFail($id);
+
+        InventoryHistory::create([
+            'inventory_id' => $item->id,
+            'item' => $item->item,
+            'action' => 'delete',
+            'user_id' => $user->id,
+            'username' => $user->username,
+        ]);
+
+        $item->delete();
         return redirect()->route('home')->with('delete', 'item berhasil dihapus');
     }
 }
