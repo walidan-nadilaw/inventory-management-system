@@ -66,7 +66,7 @@ class InventoryController extends Controller
             'action' => 'updated',
             'old_quantity' => $oldQty,
             'new_quantity' => $validated['quantity'],
-            'user_id' => auth()->id(),
+            'user_id' => $user->id,
             'username' => $user->username,
         ]);
 
