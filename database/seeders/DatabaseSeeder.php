@@ -54,7 +54,7 @@ class DatabaseSeeder extends Seeder
             ],
             [
                 'username' => 'bdmin',
-                'password' => Hash::make('bdmi456'), // Simpan password yang sudah di-hash
+                'password' => Hash::make('bdmin456'), // Simpan password yang sudah di-hash
             ],
         ];
 
@@ -67,8 +67,3 @@ class DatabaseSeeder extends Seeder
         }
     }
 }
-
-
-
-
-
