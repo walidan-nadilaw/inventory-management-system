@@ -4,7 +4,7 @@
     <table class="w-full text-left">
         <thead class="bg-dark text-white">
             <tr>
-                <th class="px-4 py-3">Tanggal</th>
+                <th class="px-4 py-3">Waktu </th>
                 <th class="px-4 py-3">Item</th>
                 <th class="px-4 py-3">Aksi</th>
                 <th class="px-4 py-3">Jumlah Sebelumnya</th>
@@ -15,8 +15,8 @@
         <tbody>
             <?php $__empty_1 = true; $__currentLoopData = $histories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $history): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
             <tr>
-                <td class="px-4 py-3"><?php echo e($history->created_at->format('Y-m-d H:i')); ?></td>
-                <td class="px-4 py-3"><?php echo e($history->item); ?></td>
+                <td class="px-4 py-3"><?php echo e($history->created_at->subHour()->setTimezone('Asia/Singapore')->format('Y-m-d H:i:s')); ?></td>
+                <td class="px-4 py-3"><?php echo e($history->item); ?></td> 
                 <td class="px-4 py-3"><?php echo e(ucfirst($history->action)); ?></td>
                 <td class="px-4 py-3"><?php echo e($history->old_quantity); ?></td>
                 <td class="px-4 py-3"><?php echo e($history->new_quantity); ?></td>

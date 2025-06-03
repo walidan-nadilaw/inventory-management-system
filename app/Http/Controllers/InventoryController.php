@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Inventory;
+use App\Models\User;
 use App\Models\InventoryHistory;
 use Illuminate\Http\Request;
 
@@ -47,6 +48,7 @@ class InventoryController extends Controller
     public function update(Request $request, $id)
     {
         $item = Inventory::findOrFail($id);
+        $user = User::findOrFail(auth()->id());
         $oldQty = $item->quantity;
 
         $validated = $request->validate([
@@ -65,6 +67,7 @@ class InventoryController extends Controller
             'old_quantity' => $oldQty,
             'new_quantity' => $validated['quantity'],
             'user_id' => auth()->id(),
+            'username' => $user->username,
         ]);
 
         return redirect()->route('home')->with('update', 'item berhasil diupdate');
