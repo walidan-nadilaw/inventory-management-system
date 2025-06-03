@@ -17,7 +17,7 @@ Route::get('/login', function () { // Anda bisa menggunakan URL yang lebih spesi
 Route::post('/login/process', [LoginController::class, 'handleLogin'])->name('login.process');
 
 Route::fallback(function () {
-    return redirect()->route('home')->with('error', 'Halaman tidak ditemukan.');
+    return redirect()->route('inventory.index')->with('error', 'Halaman tidak ditemukan.');
 });
 
 Route::get('/inventory/history', [InventoryController::class, 'history'])->name('inventory.history');
