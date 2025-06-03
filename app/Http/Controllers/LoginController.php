@@ -3,8 +3,6 @@ namespace App\Http\Controllers;
 // Contoh di dalam Controller
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth; // Jika tetap ingin menggunakan session guard Laravel
-// atau
-use Illuminate\Support\Facades\Session; // Untuk manajemen session manual sederhana
 
 class LoginController extends Controller
 {
@@ -34,7 +32,7 @@ class LoginController extends Controller
             $request->session()->put('username', $username); // Simpan username jika perlu
 
             // Redirect ke halaman dashboard atau halaman utama setelah login
-            return redirect()->intended('/'); // Ganti dengan route tujuan
+            return redirect()->intended('/inventory')-> with('login', `selamat datang ${username}`); // Ganti dengan route tujuan
         }
 
         // Login gagal
@@ -49,6 +47,6 @@ class LoginController extends Controller
         $request->session()->forget('username');
         $request->session()->invalidate();
         $request->session()->regenerateToken();
-        return redirect()->route('login.form')->with('status', 'Anda telah berhasil logout.');
+        return redirect()->route('login.form')->with('logout', 'Anda telah berhasil logout.');
     }
 }
