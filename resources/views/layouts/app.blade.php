@@ -42,7 +42,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="/history" class="flex items-center px-4 py-3 rounded-md hover:bg-gray-600 transition-colors text-gray-300 hover:text-white {{ request()->is('history') ? 'bg-primary text-white' : '' }}">
+                    <a href="{{ route('inventory.history') }}" class="flex items-center px-4 py-3 rounded-md hover:bg-gray-600 transition-colors text-gray-300 hover:text-white {{ request()->is('history') ? 'bg-primary text-white' : '' }}">
                         <i class="fas fa-history mr-3"></i> History
                     </a>
                 </li>
