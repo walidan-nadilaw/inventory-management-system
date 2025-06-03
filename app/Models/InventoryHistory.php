@@ -10,7 +10,7 @@ class InventoryHistory extends Model
     use HasFactory;
 
     protected $fillable = [
-        'inventory_id', 'item', 'action', 'old_quantity', 'new_quantity', 'user_id'
+        'inventory_id', 'item', 'action', 'old_quantity', 'new_quantity', 'user_id', 'username'
     ];
 
     public function user()

@@ -14,10 +14,10 @@ return new class extends Migration
         Schema::create('inventory_histories', function (Blueprint $table) {
             $table->id();
             $table->string('item');
-            $table->string('username');
+            $table->string('username')->default('admin');
             $table->foreignId('inventory_id')->constrained('inventories')->onDelete('cascade');
             $table->foreignId('user_id')->nullable()->constrained('users')->nullable()->onDelete('set null');
-            $table->enum('action', ['added', 'reduced', 'updated'])->default('reduced');
+            $table->string('action');
             $table->integer('old_quantity')->nullable();
             $table->integer('new_quantity')->nullable();
             $table->timestamps();
