@@ -22,6 +22,8 @@ class InventoryController extends Controller
 
     public function store(Request $request)
     {
+        $user = User::findOrFail(auth()->id());
+        
         $validated = $request->validate([
             'item' => 'required|string',
             'category' => 'required|string',
@@ -30,6 +32,13 @@ class InventoryController extends Controller
         ]);
     
         Inventory::create($validated);
+
+        InventoryHistory::create([
+            'item' => $validated['item'],
+            'action' => 'add',
+            'new_quantity' => $validated['quantity'],
+            'username' => $user->username,
+        ]);
     
         return redirect()->route('home')->with('add', 'Item berhasil ditambahkan.');
     }    
@@ -61,12 +70,10 @@ class InventoryController extends Controller
         $item->update($validated);
 
         InventoryHistory::create([
-            'inventory_id' => $item->id,
             'item' => $item->item,
             'action' => 'update',
             'old_quantity' => $oldQty,
             'new_quantity' => $validated['quantity'],
-            'user_id' => $user->id,
             'username' => $user->username,
         ]);
 
@@ -84,10 +91,8 @@ class InventoryController extends Controller
         $item = Inventory::findOrFail($id);
 
         InventoryHistory::create([
-            'inventory_id' => $item->id,
             'item' => $item->item,
             'action' => 'delete',
-            'user_id' => $user->id,
             'username' => $user->username,
         ]);
 
