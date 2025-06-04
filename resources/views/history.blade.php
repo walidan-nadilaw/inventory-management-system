@@ -22,7 +22,7 @@
                 <td class="px-4 py-3">{{ ucfirst($history->action) }}</td>
                 <td class="px-4 py-3">{{ $history->old_quantity }}</td>
                 <td class="px-4 py-3">{{ $history->new_quantity }}</td>
-                <td class="px-4 py-3">{{ $history->user->username ?? '-' }}</td>
+                <td class="px-4 py-3">{{ $history->username ?? '-' }}</td>
             </tr>
             @empty
             <tr>

@@ -20,7 +20,7 @@
                 <td class="px-4 py-3"><?php echo e(ucfirst($history->action)); ?></td>
                 <td class="px-4 py-3"><?php echo e($history->old_quantity); ?></td>
                 <td class="px-4 py-3"><?php echo e($history->new_quantity); ?></td>
-                <td class="px-4 py-3"><?php echo e($history->user->username ?? '-'); ?></td>
+                <td class="px-4 py-3"><?php echo e($history->username ?? '-'); ?></td>
             </tr>
             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
             <tr>
