@@ -53,8 +53,8 @@ class DatabaseSeeder extends Seeder
                 'password' => Hash::make('admin123'),            
             ],
             [
-                'username' => 'bdmin',
-                'password' => Hash::make('bdmin456'), // Simpan password yang sudah di-hash
+                'username' => 'nidma',
+                'password' => Hash::make('nidma321'), // Simpan password yang sudah di-hash
             ],
         ];
 
