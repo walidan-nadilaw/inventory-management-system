@@ -20,8 +20,8 @@
                 <td class="px-4 py-3">{{ $history->created_at->subHour()->setTimezone('Asia/Singapore')->format('Y-m-d H:i:s') }}</td>
                 <td class="px-4 py-3">{{ $history->item }}</td> 
                 <td class="px-4 py-3">{{ ucfirst($history->action) }}</td>
-                <td class="px-4 py-3">{{ $history->old_quantity }}</td>
-                <td class="px-4 py-3">{{ $history->new_quantity }}</td>
+                <td class="px-4 py-3">{{ $history->old_quantity ?? '-' }}</td>
+                <td class="px-4 py-3">{{ $history->new_quantity ?? '-' }}</td>
                 <td class="px-4 py-3">{{ $history->username ?? '-' }}</td>
             </tr>
             @empty

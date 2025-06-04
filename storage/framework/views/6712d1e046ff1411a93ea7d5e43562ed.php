@@ -18,8 +18,8 @@
                 <td class="px-4 py-3"><?php echo e($history->created_at->subHour()->setTimezone('Asia/Singapore')->format('Y-m-d H:i:s')); ?></td>
                 <td class="px-4 py-3"><?php echo e($history->item); ?></td> 
                 <td class="px-4 py-3"><?php echo e(ucfirst($history->action)); ?></td>
-                <td class="px-4 py-3"><?php echo e($history->old_quantity); ?></td>
-                <td class="px-4 py-3"><?php echo e($history->new_quantity); ?></td>
+                <td class="px-4 py-3"><?php echo e($history->old_quantity ?? '-'); ?></td>
+                <td class="px-4 py-3"><?php echo e($history->new_quantity ?? '-'); ?></td>
                 <td class="px-4 py-3"><?php echo e($history->username ?? '-'); ?></td>
             </tr>
             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
